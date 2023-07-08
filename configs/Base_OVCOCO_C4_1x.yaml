@@ -1,0 +1,38 @@
+MODEL:
+  META_ARCHITECTURE: "CustomRCNN"
+  RPN:
+    PRE_NMS_TOPK_TEST: 6000
+    POST_NMS_TOPK_TEST: 1000
+  TEST_CLASSIFIERS: ['datasets/metadata/ovad_obj_clip-ViT-B32_none+cname.npy']
+  TEST_NUM_CLASSES: [65]
+  ROI_HEADS:
+    NAME: "CustomRes5ROIHeads"
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  RESNETS:
+    DEPTH: 50
+  ROI_BOX_HEAD:
+    PREDICTOR_NAME: "EmbeddingFastRCNNOutputLayers"
+    CLS_AGNOSTIC_BBOX_REG: True
+    USE_SIGMOID_CE: True
+    USE_ZEROSHOT_CLS: True
+    ZEROSHOT_WEIGHT_PATH: 'datasets/metadata/ovad_obj_clip-ViT-B32_none+cname.npy'
+    IGNORE_ZERO_CATS: False
+    CAT_FREQ_PATH: ''
+DATASETS:
+  TRAIN: ("coco_train2017_ovd_base",)
+  TEST: ("coco_val2017_ovd17_g",)
+DATALOADER:
+  NUM_WORKERS: 4
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.02
+  WARMUP_ITERS: 1000
+  STEPS: (60000, 80000)
+  MAX_ITER: 90000
+  CHECKPOINT_PERIOD: 1000000000
+INPUT:
+  MIN_SIZE_TRAIN: (800,)
+VERSION: 2
+OUTPUT_DIR: output/OVAD_Benchmark2000/open_vocab_det/auto
+FP16: True
+SEED: 25111839

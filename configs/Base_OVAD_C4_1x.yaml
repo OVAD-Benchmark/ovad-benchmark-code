@@ -1,0 +1,32 @@
+_BASE_: "./Base_OVCOCO_C4_1x.yaml"
+MODEL:
+  RESET_CLS_TESTS: True
+  ATTRIBUTE_ON: True
+  TEST_CLASSIFIERS: ['datasets/text_representations/ovad_obj_cls_clipViT-B32_none+cname.npy', 'datasets/text_representations/ovad_obj_cls_clipViT-B32_none+cname.pkl']
+  TEST_ATTRIBUTE_CLASSIFIERS: ['datasets/text_representations/ovad_att_clip-ViT-B32_+catt.npy', '']
+  TEST_NUM_CLASSES: [80, 65]
+  ROI_HEADS:
+    NUM_ATTRIBUTES: 117
+  ROI_BOX_HEAD:
+    NAME: DeticFastRCNNOutputLayers
+    TWO_LAYER_BBOX_PRED: True
+    ZEROSHOT_WEIGHT_PATH: 'datasets/text_representations/ovad_obj_cls_clipViT-B32_none+cname.npy'
+    ATTRIBUTE_ACTIVE: True
+    ATTRIBUTE_CONDITIONAL: False
+    ADD_FEATURE_TO_PROP: True
+    IGNORE_ZERO_CATS: False
+DATASETS:
+  TEST: ("ovad2000","coco_val2017_ovd17_g" )
+DATALOADER:
+  NUM_WORKERS: 4
+TEST:
+  EVAL_PERIOD: 10000
+  SAVE_MODEL_BEST_METRIC: 'val/AP'
+EVALUATION_ATTRIBUTE:
+  CLS_DEPENDENT: False
+  MIN_IOU_MATCH: 0.5
+  INCLUDE_MISSING_BOXES: True
+  CONDITIONAL: False
+  EMBEDDING_DICTIONARY: ""
+  CONDITIONAL_USE_OBJ_LABEL: False
+OUTPUT_DIR: output/OVAD_Benchmark2000/open_vocab_det_full2/auto

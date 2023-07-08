@@ -1,3 +1,21 @@
+# Root Directories
+/run_bash/
+/datasets/
+/output/
+./datasets/ovad/
+/logs/
+/models/
+/graveyard/
+/not_public/
+
+# third party
+ovamc/ALBEF
+ovamc/BLIP
+ovamc/LAVIS
+ovamc/open_clip
+ovamc/clip
+ovamc/X_VLM
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
