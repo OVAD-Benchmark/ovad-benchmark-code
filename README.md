@@ -45,8 +45,8 @@ conda activate ovad_env
 
 # install PyTorch and Detectron2 from previous section
 # under your working directory
-git clone https://github.com/OVAD-Benchmark/ovad-bechmark-code.git
-cd ovad-bechmark-code
+git clone https://github.com/OVAD-Benchmark/ovad-benchmark-code.git
+cd ovad-benchmark-code
 pip install -r requirements.txt
 ~~~
 
