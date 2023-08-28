@@ -163,7 +163,7 @@ Download the pretrained [OVAD Baseline model](https://lmb.informatik.uni-freibur
 ~~~bash
 # OVAD Baseline
 python train_att_net.py --num-gpus 1 --resume \
---eval-only --config-file configs/Base_OVAD_C4_1x_average_att.yaml \
+--eval-only --config-file configs/Base_OVAD_C4_1x.yaml \
 MODEL.WEIGHTS models/OVAD_baseline.pth 
 
 # OVAD Baseline Box Oracle
